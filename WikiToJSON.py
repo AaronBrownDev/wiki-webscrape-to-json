@@ -32,7 +32,7 @@ def main(url: str):
 
     for href in hrefs:
         # Check if the link is a valid Wikipedia article (starts with "/wiki/", not a file, not a special category)
-        if href.get("href", "INCORRECT")[:6] == "/wiki/" and href.get("href")[6:10] != "File" and href.get("href")[6:13] != "Special" and href.get("href") not in visited_pages:
+        if href.get("href", "INCORRECT")[:6] == "/wiki/" and href.get("href")[6:10] != "File" and href.get("href")[6:13] != "Special" and f"https://en.wikipedia.org{href.get('href')}" not in visited_pages:
             # Add the new page to the list of pages to be visited
             to_be_visited_pages.append(f"https://en.wikipedia.org{href.get('href')}")
 
@@ -83,5 +83,4 @@ if __name__ == "__main__":
     while len(to_be_visited_pages) > 0:
         url = to_be_visited_pages.pop(0)  # Get the next page to visit
         visited_pages.append(url)        # Mark the page as visited
-        print(f"VISITING PAGE: {url}")
         main(url=url)  # Recursively scrape the new page
