@@ -10,6 +10,8 @@ def main(url : str):
     text_section = soup.find("div", class_ = "mw-content-ltr mw-parser-output")
 
     paragraphs = text_section.findAll(["h2", "h3", "p"])
+    
+    # hrefs = text_section.findAll(["a"])
 
     wiki_content = {}
     header = "Introduction"
